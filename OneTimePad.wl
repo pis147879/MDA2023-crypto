@@ -13,7 +13,11 @@ c=Map[FromDigits[#,2]&,Partition[ciphertext,8]];
 cifrato=FromCharacterCode[c]
 
 
-Print[cifrato]
+Print[cifrato];
+
+(* per decifrare si usa lo stesso keystream che va
+sottratto dal cifrato, ma nel campo binario, addizione e sottrazione 
+coincidono, e dunque si puo' usare la stessa funzione di cifratura *)
 p2=Enc[String2Bin[cifrato],keystream]
 p=Map[FromDigits[#,2]&,Partition[p2,8]];
 ptxt=FromCharacterCode[p];
