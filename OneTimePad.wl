@@ -13,7 +13,7 @@ c=Map[FromDigits[#,2]&,Partition[ciphertext,8]];
 cifrato=FromCharacterCode[c]
 
 
-Print[cifrato];
+Print["codice cifrato",cifrato];
 
 (* per decifrare si usa lo stesso keystream che va
 sottratto dal cifrato, ma nel campo binario, addizione e sottrazione 
