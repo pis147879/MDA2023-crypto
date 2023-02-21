@@ -2,15 +2,16 @@
 shannon=Import["https://media.newyorker.com/photos/5909765cc14b3c606c1089f4/master/w_2240,c_limit/Roberts-Claude-Shannon.jpg"];
 (* recupero la sequenza di bit *)
 plaintext=ImageData[shannon,"Bit"];
-dimensions=Dimensions[plaintext]
+dimensions=Dimensions[plaintext];
+Print[dimensions];
 ptx2=Flatten[plaintext];
 
 (* FASE DI ENCRYPTION *)
 
     (* fisso una chiave *)
-        key=45
+        key=45;
     (* inizializzo il generatore *)
-        SeedRandom[key]
+        SeedRandom[key];
     (* genero il keystream con il generatore di WM *)
         keystream=Table[RandomInteger[1],Length[ptx2]];
 
@@ -19,14 +20,15 @@ ptx2=Flatten[plaintext];
 
 (* riconverto -- per motivi di presentazione -- la sequenza cifrata in immagine*)
 ciphertext=Partition[Partition[ctx,dimensions[[-1]]],dimensions[[-2]]];
-Dimensions[ciphertext]
+Print@Dimensions[ciphertext];
 img=Image[ciphertext];
 Print["scrambled image  \n",Show[img,ImageSize->Large]];
 
 (* Decryption *)
 
 plaintext=ImageData[img,"Bit"];
-dimensions=Dimensions[plaintext]
+dimensions=Dimensions[plaintext];
+Print@dimensions;
 ptx2=Flatten[plaintext];
 key=45;
 SeedRandom[key];
